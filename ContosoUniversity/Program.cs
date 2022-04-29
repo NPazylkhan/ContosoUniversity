@@ -15,7 +15,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-CreateDbIfNotExists(app);
+//CreateDbIfNotExists(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -36,37 +36,37 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<SchoolContext>();
-        DbInitializer.Initialize(context);
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while seeding the database.");
-    }
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+//    try
+//    {
+//        var context = services.GetRequiredService<SchoolContext>();
+//        DbInitializer.Initialize(context);
+//    }
+//    catch (Exception ex)
+//    {
+//        var logger = services.GetRequiredService<ILogger<Program>>();
+//        logger.LogError(ex, "An error occurred while seeding the database.");
+//    }
+//}
 
 app.Run();
 
-static void CreateDbIfNotExists(IHost host)
-{
-    using (var scope = host.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
-        try
-        {
-            var context = services.GetRequiredService<SchoolContext>();
-            DbInitializer.Initialize(context);
-        }
-        catch (Exception ex)
-        {
-            var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred creating the DB.");
-        }
-    }
-}
+//static void CreateDbIfNotExists(IHost host)
+//{
+//    using (var scope = host.Services.CreateScope())
+//    {
+//        var services = scope.ServiceProvider;
+//        try
+//        {
+//            var context = services.GetRequiredService<SchoolContext>();
+//            DbInitializer.Initialize(context);
+//        }
+//        catch (Exception ex)
+//        {
+//            var logger = services.GetRequiredService<ILogger<Program>>();
+//            logger.LogError(ex, "An error occurred creating the DB.");
+//        }
+//    }
+//}
