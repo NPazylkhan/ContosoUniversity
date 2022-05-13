@@ -63,7 +63,7 @@
 
 @if (Model.Courses != null)
 {
-    <h3>Courses Taught by Selected Instructor</h3>
+    <h3>Courses Taught by <span style="font-style: oblique;">@ViewBag.Instructor</span></h3>
     <table class="table">
         <tr>
             <th></th>
@@ -101,7 +101,7 @@
 @if (Model.Enrollments != null)
 {
     <h3>
-        Students Enrolled in Selected Course
+        Students Enrolled in <span style="font-style: oblique;">@ViewBag.Course</span>
     </h3>
     <table class="table">
         <tr>

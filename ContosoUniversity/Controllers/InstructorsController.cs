@@ -33,12 +33,14 @@ namespace ContosoUniversity.Controllers
                 Instructor instructor = viewModel.Instructors.Single(
                     i => i.ID == id.Value);
                 viewModel.Courses = instructor.CourseAssignments.Select(s => s.Course);
+                ViewData["Instructor"] = instructor.FullName;
             }
 
             if (courseID != null)
             {
                 ViewData["CourseID"] = courseID.Value;
                 var selectedCourse = viewModel.Courses.Where(x => x.CourseID == courseID).Single();
+                ViewData["Course"] = selectedCourse.Title;
                 await _context.Entry(selectedCourse).Collection(x => x.Enrollments).LoadAsync();
                 foreach (Enrollment enrollment in selectedCourse.Enrollments)
                 {
