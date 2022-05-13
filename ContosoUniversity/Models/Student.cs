@@ -27,12 +27,6 @@ namespace ContosoUniversity.Models
 
         [Display(Name = "Full Name")]
         public string FullName => LastName + ", " + FirstMidName;
-       /* {
-            get
-            {
-                return LastName + ", " + FirstMidName;
-            }
-        }*/
 
         public ICollection<Enrollment> Enrollments { get; set; }
     }
